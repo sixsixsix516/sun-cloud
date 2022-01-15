@@ -1,0 +1,23 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: sun-gateway
+  cloud:
+    gateway:
+      routes:
+        # 用户端
+        - id: sun-user
+          uri: http://127.0.0.1:9001/
+          predicates:
+            - Path=/user/**
+
+        # 后台管理端
+        - id: sun-manager
+          uri: http://127.0.0.1:9002/
+          predicates:
+            - Path=/manager/**
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848

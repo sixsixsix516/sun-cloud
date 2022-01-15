@@ -1,0 +1,33 @@
+server:
+  port: 9001
+  servlet:
+    context-path: /user
+
+spring:
+  application:
+    name: sun-user
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql:///sun-cloud?useSSL=false&characterEncoding=utf-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&
+    username: root
+    password: 1111
+    hikari:
+      minimum-idle: 9
+      maximum-pool-size: 20
+      auto-commit: true
+      connection-timeout: 6000000
+      connection-test-query: SELECT 1
+      max-lifetime: 120000
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+mybatis-plus:
+  # 指定mapper.xml文件地址
+  mapper-locations: classpath:mapper/*/*Mapper.xml
+  # 指定实体类包
+  type-aliases-package: com.sixsixsix516.user.model
+  configuration:
+    # 自动将下划线模式 转为 驼峰模式
+    map-underscore-to-camel-case: true
