@@ -12,7 +12,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients("com.sixsixsix516")
 @MapperScan("com.sixsixsix516.manager.mapper")
 @EnableDiscoveryClient
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.sixsixsix516")
 public class SunManagerApplication {
 
     public static void main(String[] args) {

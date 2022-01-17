@@ -10,7 +10,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @MapperScan("com.sixsixsix516.user.mapper")
 @EnableDiscoveryClient
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.sixsixsix516")
 public class SunUserApplication {
 
     public static void main(String[] args) {

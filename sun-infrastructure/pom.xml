@@ -17,14 +17,7 @@
     <modules>
         <module>sun-gateway</module>
         <module>sun-common</module>
+        <module>sun-security</module>
     </modules>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 </project>

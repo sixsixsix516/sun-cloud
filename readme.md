@@ -19,3 +19,11 @@
 
 链路监控的使用方式
 添加JVM参数 -javaagent:D:\app\component\apache-skywalking-apm-bin-es7\agent\skywalking-agent.jar -Dskywalking.agent.service_name=sun-gateway -Dskywalking.collector.backend_service=127.0.0.1:11800
+
+
+
+待实现
+1. 一个工具：填入包名，作者名，直接全局替换相关地方！
+
+优化项
+1. 版本号的定义, 不可以写死
