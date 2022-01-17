@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * 认证、授权
+ * @author SUN
  */
 @EnableDiscoveryClient
 @SpringBootApplication

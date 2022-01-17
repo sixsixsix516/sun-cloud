@@ -36,25 +36,14 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Autowired
     private TokenService tokenService;
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private ClientDetailsService clientDetailsService;
+
 
     /**
      * 定义客户端
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        InMemoryClientDetailsServiceBuilder builder = new InMemoryClientDetailsServiceBuilder();
-
-        List<Client> clientList = ClientList.clients;
-        for (Client client : clientList) {
-            builder.withClient(client.getClientId())
-                    // 密钥加密
-                    .secret(passwordEncoder.encode(client.getClientSecret()))
-                    .scopes(client.getScopes())
-                    .authorizedGrantTypes(client.getGrantTypes());
-        }
-
-        ClientDetailsService clientDetailsService = builder.build();
         clients.withClientDetails(clientDetailsService);
     }
 

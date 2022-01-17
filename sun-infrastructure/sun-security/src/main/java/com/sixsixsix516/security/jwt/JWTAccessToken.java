@@ -9,6 +9,7 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.DefaultAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.DefaultUserAuthenticationConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +20,7 @@ import java.util.Map;
  * @author SUN
  * @date 2022/1/16
  */
+@Component
 public class JWTAccessToken extends JwtAccessTokenConverter {
 
     public JWTAccessToken(UserDetailsService userDetailsService) {

@@ -11,7 +11,7 @@
 
     <artifactId>sun-security</artifactId>
     <name>sun-security</name>
-    <description>网关服务</description>
+    <description>安全服务</description>
 
 
     <dependencies>
@@ -26,6 +26,10 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-oauth2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
     </dependencies>
 

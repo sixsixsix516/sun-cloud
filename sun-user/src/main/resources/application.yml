@@ -22,6 +22,15 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+security:
+  oauth2:
+    client:
+      client-id: ${spring.application.name}
+      client-secret: ${spring.application.name}
+      access-token-uri: http://127.0.0.1:9004/oauth/token
+      grant-type: client_credentials
+      scope: SERVICE
+
 
 mybatis-plus:
   # 指定mapper.xml文件地址
