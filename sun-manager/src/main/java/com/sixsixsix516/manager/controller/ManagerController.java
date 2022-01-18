@@ -20,6 +20,11 @@ public class ManagerController {
         return userApi.findById(1L);
     }
 
+    @GetMapping("/test")
+    public Result<String> test() {
+        return Result.success("Hello I am manager");
+    }
+
     @Autowired
     private UserApi userApi;
 }

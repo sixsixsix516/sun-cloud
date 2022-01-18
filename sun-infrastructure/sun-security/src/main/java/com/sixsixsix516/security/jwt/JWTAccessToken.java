@@ -1,5 +1,6 @@
 package com.sixsixsix516.security.jwt;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -23,6 +24,7 @@ import java.util.Map;
 @Component
 public class JWTAccessToken extends JwtAccessTokenConverter {
 
+    @Autowired
     public JWTAccessToken(UserDetailsService userDetailsService) {
         DefaultUserAuthenticationConverter defaultUserAuthenticationConverter = new DefaultUserAuthenticationConverter();
         defaultUserAuthenticationConverter.setUserDetailsService(userDetailsService);

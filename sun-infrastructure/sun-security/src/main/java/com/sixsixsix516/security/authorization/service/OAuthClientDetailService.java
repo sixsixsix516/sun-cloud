@@ -3,7 +3,6 @@ package com.sixsixsix516.security.authorization.service;
 import com.sixsixsix516.security.client.Client;
 import com.sixsixsix516.security.client.ClientList;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.builders.InMemoryClientDetailsServiceBuilder;
 import org.springframework.security.oauth2.provider.ClientDetails;
@@ -23,7 +22,6 @@ public class OAuthClientDetailService implements ClientDetailsService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-    @Autowired
     private ClientDetailsService clientDetailsService;
 
     @PostConstruct

@@ -9,13 +9,13 @@ spring:
       routes:
         # 用户端
         - id: sun-user
-          uri: http://127.0.0.1:9001/
+          uri: http://sun-user:sun-user@127.0.0.1:9001/
           predicates:
             - Path=/user/**
 
         # 后台管理端
         - id: sun-manager
-          uri: http://127.0.0.1:9002/
+          uri: http://sun-manager:sun-manager@127.0.0.1:9002/
           predicates:
             - Path=/manager/**
     nacos:

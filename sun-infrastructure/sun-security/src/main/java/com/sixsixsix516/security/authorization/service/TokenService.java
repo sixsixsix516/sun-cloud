@@ -2,10 +2,14 @@ package com.sixsixsix516.security.authorization.service;
 
 import com.sixsixsix516.security.constant.TokenTime;
 import com.sixsixsix516.security.jwt.JWTAccessToken;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationManager;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 /**
  * 自定义令牌配置
@@ -16,13 +20,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class TokenService extends DefaultTokenServices {
 
-    public TokenService(JWTAccessToken token, OAuthClientDetailService clientDetailsService, AuthenticationManager authenticationManager) {
+    @Autowired
+    public TokenService(JWTAccessToken token, OAuthClientDetailService clientDetailsService, Optional<AuthenticationManager> authenticationManager) {
         // 令牌持久化容器
         setTokenStore(new JwtTokenStore(token));
         //令牌支持的客户端详情
         setClientDetailsService(clientDetailsService);
         // 认证管理器
-        setAuthenticationManager(authenticationManager);
+//        setAuthenticationManager(authenticationManager);
+        setAuthenticationManager(authenticationManager.orElseGet(() -> {
+            OAuth2AuthenticationManager manager = new OAuth2AuthenticationManager();
+            manager.setClientDetailsService(clientDetailsService);
+            manager.setTokenServices(this);
+            return manager;
+        }));
         // 令牌额外负载
         setTokenEnhancer(token);
         // accessToken有效期 单位秒
