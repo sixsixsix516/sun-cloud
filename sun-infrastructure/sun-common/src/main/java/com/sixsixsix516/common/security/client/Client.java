@@ -1,4 +1,4 @@
-package com.sixsixsix516.security.client;
+package com.sixsixsix516.common.security.client;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,14 +26,14 @@ public class Client {
     /**
      * 授权类型
      *
-     * 见 {@link com.sixsixsix516.security.constant.GrantType}
+     * 见 {@link com.sixsixsix516.common.security.constant.GrantType}
      */
     private String[] grantTypes;
 
     /**
      * 授权范围
      *
-     * 见 {@link com.sixsixsix516.security.constant.Scope}
+     * 见 {@link com.sixsixsix516.common.security.constant.Scope}
      */
     private String[] scopes;
 }

@@ -1,7 +1,9 @@
-package com.sixsixsix516.security.authorization.service;
+package com.sixsixsix516.common.security.jwt;
 
-import com.sixsixsix516.security.constant.TokenTime;
-import com.sixsixsix516.security.jwt.JWTAccessToken;
+
+import com.sixsixsix516.common.security.RSA256PublicJWTAccessToken;
+import com.sixsixsix516.common.security.client.OAuthClientDetailService;
+import com.sixsixsix516.common.security.constant.TokenTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationManager;
@@ -21,7 +23,7 @@ import java.util.Optional;
 public class TokenService extends DefaultTokenServices {
 
     @Autowired
-    public TokenService(JWTAccessToken token, OAuthClientDetailService clientDetailsService, Optional<AuthenticationManager> authenticationManager) {
+    public TokenService(RSA256PublicJWTAccessToken token, OAuthClientDetailService clientDetailsService, Optional<AuthenticationManager> authenticationManager) {
         // 令牌持久化容器
         setTokenStore(new JwtTokenStore(token));
         //令牌支持的客户端详情

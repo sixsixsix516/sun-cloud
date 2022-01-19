@@ -1,9 +1,8 @@
-package com.sixsixsix516.security.client;
+package com.sixsixsix516.common.security.client;
 
-import com.sixsixsix516.security.constant.GrantType;
-import com.sixsixsix516.security.constant.Scope;
+import com.sixsixsix516.common.security.constant.GrantType;
+import com.sixsixsix516.common.security.constant.Scope;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

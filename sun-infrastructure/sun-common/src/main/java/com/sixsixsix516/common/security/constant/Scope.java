@@ -1,4 +1,4 @@
-package com.sixsixsix516.security.constant;
+package com.sixsixsix516.common.security.constant;
 
 /**
  * 定义访问范围

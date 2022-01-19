@@ -32,9 +32,11 @@ security:
     client:
       client-id: ${spring.application.name}
       client-secret: ${spring.application.name}
-      access-token-uri: http://127.0.0.1:9004/oauth/token
+      access-token-uri: http://127.0.0.1:9000/security/oauth/token
       grant-type: client_credentials
       scope: SERVICE
+    resource:
+      user-info-uri: BUGFIX
 
 mybatis-plus:
   mapper-locations: classpath:mapper/*/*Mapper.xml

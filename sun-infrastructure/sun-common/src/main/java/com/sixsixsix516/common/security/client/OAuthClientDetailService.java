@@ -1,7 +1,5 @@
-package com.sixsixsix516.security.authorization.service;
+package com.sixsixsix516.common.security.client;
 
-import com.sixsixsix516.security.client.Client;
-import com.sixsixsix516.security.client.ClientList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.builders.InMemoryClientDetailsServiceBuilder;

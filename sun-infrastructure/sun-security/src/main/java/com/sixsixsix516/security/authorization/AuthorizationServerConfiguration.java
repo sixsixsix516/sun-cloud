@@ -1,7 +1,7 @@
 package com.sixsixsix516.security.authorization;
 
-import com.sixsixsix516.security.authorization.service.OAuthClientDetailService;
-import com.sixsixsix516.security.authorization.service.TokenService;
+import com.sixsixsix516.common.security.jwt.TokenService;
+import com.sixsixsix516.common.security.client.OAuthClientDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

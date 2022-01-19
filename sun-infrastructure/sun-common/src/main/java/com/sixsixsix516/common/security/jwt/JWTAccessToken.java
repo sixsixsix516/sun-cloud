@@ -1,16 +1,11 @@
-package com.sixsixsix516.security.jwt;
+package com.sixsixsix516.common.security.jwt;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
-import org.springframework.security.oauth2.provider.token.DefaultAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.DefaultUserAuthenticationConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,15 +16,7 @@ import java.util.Map;
  * @author SUN
  * @date 2022/1/16
  */
-@Component
 public class JWTAccessToken extends JwtAccessTokenConverter {
-
-    @Autowired
-    public JWTAccessToken(UserDetailsService userDetailsService) {
-        DefaultUserAuthenticationConverter defaultUserAuthenticationConverter = new DefaultUserAuthenticationConverter();
-        defaultUserAuthenticationConverter.setUserDetailsService(userDetailsService);
-        ((DefaultAccessTokenConverter) getAccessTokenConverter()).setUserTokenConverter(defaultUserAuthenticationConverter);
-    }
 
     /**
      * 在令牌负载中加入额外信息
