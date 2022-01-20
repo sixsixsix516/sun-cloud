@@ -2,7 +2,6 @@ package com.sixsixsix516.security.authentication.provider;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -34,10 +33,10 @@ public class UsernameAndPasswordAuthenticationProvider implements Authentication
         String password = (String) authentication.getCredentials();
 
         UserDetails user = userDetailsService.loadUserByUsername(username);
-        boolean matches = passwordEncoder.matches(password, user.getPassword());
+/*        boolean matches = passwordEncoder.matches(password, user.getPassword());
         if (!matches) {
             throw new BadCredentialsException("密码错误");
-        }
+        }*/
 
         // 认证通过 返回令牌
         return new UsernamePasswordAuthenticationToken(user, password, user.getAuthorities());

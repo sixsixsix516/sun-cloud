@@ -3,11 +3,12 @@ package com.sixsixsix516.common.security;
 import com.sixsixsix516.common.security.jwt.JWTAccessToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.provider.token.DefaultAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.DefaultUserAuthenticationConverter;
-import org.springframework.security.rsa.crypto.KeyStoreKeyFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.util.FileCopyUtils;
 
 import java.io.IOException;
 
@@ -25,15 +26,15 @@ public class RSA256PublicJWTAccessToken extends JWTAccessToken {
         defaultUserAuthenticationConverter.setUserDetailsService(userDetailsService);
         ((DefaultAccessTokenConverter) getAccessTokenConverter()).setUserTokenConverter(defaultUserAuthenticationConverter);
 
-/*        Resource resource = new ClassPathResource("public.cert");
+        Resource resource = new ClassPathResource("public.cert");
         // 拿到公钥内容
         String publicKey = new String(FileCopyUtils.copyToByteArray(resource.getInputStream()));
-        setVerifierKey(publicKey);*/
+        setVerifierKey(publicKey);
 
-        // 私钥密码
+    /*    // 私钥密码
         KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("rsa.jks"), "SUN123456".toCharArray());
         // 别名
-        setKeyPair(keyStoreKeyFactory.getKeyPair("SUN"));
+        setKeyPair(keyStoreKeyFactory.getKeyPair("SUN"));*/
     }
 
 }

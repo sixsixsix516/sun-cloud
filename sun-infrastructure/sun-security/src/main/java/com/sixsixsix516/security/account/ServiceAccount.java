@@ -22,7 +22,7 @@ public class ServiceAccount implements UserDetails {
     private Collection<GrantedAuthority> authorities = new HashSet<>();
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public Collection<GrantedAuthority> getAuthorities() {
         return authorities;
     }
 
