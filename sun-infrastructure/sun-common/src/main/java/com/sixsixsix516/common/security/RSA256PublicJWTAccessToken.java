@@ -2,6 +2,7 @@ package com.sixsixsix516.common.security;
 
 import com.sixsixsix516.common.security.jwt.JWTAccessToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,11 +18,13 @@ import java.io.IOException;
  * @author SUN
  * @date 2022/1/19
  */
+@ConditionalOnProperty(prefix = "security.oauth2.client", name = "client-id")
 @Component
 public class RSA256PublicJWTAccessToken extends JWTAccessToken {
 
     @Autowired
     public RSA256PublicJWTAccessToken(UserDetailsService userDetailsService) throws IOException {
+        System.out.println("我被执行了！！！！");
         DefaultUserAuthenticationConverter defaultUserAuthenticationConverter = new DefaultUserAuthenticationConverter();
         defaultUserAuthenticationConverter.setUserDetailsService(userDetailsService);
         ((DefaultAccessTokenConverter) getAccessTokenConverter()).setUserTokenConverter(defaultUserAuthenticationConverter);

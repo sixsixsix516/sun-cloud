@@ -1,17 +1,22 @@
 package com.sixsixsix516.security.authorization;
 
-import com.sixsixsix516.common.security.jwt.TokenService;
 import com.sixsixsix516.common.security.client.OAuthClientDetailService;
+import com.sixsixsix516.common.security.jwt.TokenService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.error.DefaultWebResponseExceptionTranslator;
 
 
 /**
@@ -20,6 +25,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
  * @author SUN
  * @date 2022/1/15
  */
+@Slf4j
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
@@ -61,6 +67,20 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .tokenServices(tokenService)
                 // 配置TokenEndpoint端点请求访问类型, 默认 HttpMethod.POST
                 .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
+
+
+        DefaultWebResponseExceptionTranslator defaultWebResponseExceptionTranslator = new DefaultWebResponseExceptionTranslator() {
+            @Override
+            public ResponseEntity<OAuth2Exception> translate(Exception e) throws Exception {
+                log.error("生成token异常", e);
+                ResponseEntity<OAuth2Exception> responseEntity = super.translate(e);
+                HttpHeaders headers = new HttpHeaders();
+                headers.setAll(responseEntity.getHeaders().toSingleValueMap());
+                OAuth2Exception excBody = responseEntity.getBody();
+                return new ResponseEntity<>(excBody, headers, responseEntity.getStatusCode());
+            }
+        };
+        endpoints.exceptionTranslator(defaultWebResponseExceptionTranslator);
     }
 
     /**

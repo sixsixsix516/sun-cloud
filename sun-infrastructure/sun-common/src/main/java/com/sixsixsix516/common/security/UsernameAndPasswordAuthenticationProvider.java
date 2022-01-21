@@ -1,4 +1,4 @@
-package com.sixsixsix516.security.authentication.provider;
+package com.sixsixsix516.common.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;

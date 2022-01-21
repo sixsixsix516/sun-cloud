@@ -1,14 +1,11 @@
 package com.sixsixsix516.security.authentication;
 
-import com.sixsixsix516.security.authentication.provider.UsernameAndPasswordAuthenticationProvider;
+import com.sixsixsix516.common.security.UsernameAndPasswordAuthenticationProvider;
 import com.sixsixsix516.security.authorization.AuthorizationServerConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.TestingAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;

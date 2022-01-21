@@ -1,5 +1,6 @@
-package com.sixsixsix516.security.account;
+package com.sixsixsix516.common.security.account;
 
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,6 +11,7 @@ import java.util.HashSet;
  * @author SUN
  * @date 2022/1/15
  */
+@Data
 public class ServiceAccount implements UserDetails {
 
     private String username;
