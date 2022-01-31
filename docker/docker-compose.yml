@@ -1,0 +1,85 @@
+version: '3.8'
+services:
+  # 第三方软件
+  MySQL:
+    container_name: MySQL
+    image: mysql:8.0
+    build:
+      context: ./mysql
+    restart: always
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./mysql/conf:/etc/mysql/conf.d
+      - ./mysql/logs:/logs
+      - ./mysql/data:/var/lib/mysql
+    command: [
+               'mysqld',
+               '-innodb-buffer-poll-size=80M',
+               '--character-set-server=utf8mb4',
+               '-collation-server=utf8mb4_unicode_ci',
+               '--default-time-zone=+8:00',
+               '--lower-case-table-names=1'
+    ]
+    environment:
+      mysql-database: 'sun-cloud'
+      mysql_root_password: 1111
+
+  Redis:
+    container_name: Redis
+    image: redis
+    build:
+      context: ./redis
+    restart: always
+    ports:
+      - '6379:6379'
+    volumes:
+      - ./redis/conf/redis.conf:/home/software/redis/redis.conf
+      - ./redis/data:/data
+    command: redis-server /home/software/redis/redis.conf
+
+  Nginx:
+    container_name: Nginx
+    image: nginx
+    build:
+      context: ./nginx
+    restart: always
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx/html/dish:/home/sun/projects/sun-ui
+      - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/logs:/var/log/nginx
+      - ./nginx/conf.d:/etc/nginx/conf.d
+
+  Nacos:
+    container_name: nacos
+    image: nacos/nacos-server
+    build:
+      context: ./nacos
+    environment:
+      - MODE=standlone
+    volumes:
+      - ./nacos/logs/:/home/nacos/logs
+      - ./nacos/conf/application.properties:/home/nacos/conf/application.properties
+    restart: always
+    ports:
+      - '8848:8848'
+      - '9848:9848'
+      - '9849:9849'
+
+  # 项目
+  SUN-Gateway:
+    container_name: sun-gateway
+    restart: always
+    build:
+      context: ./sun-infrastructure/sun-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "9200:9200"
+    depends_on:
+      - Redis
+      - MySQL
+
+
+
