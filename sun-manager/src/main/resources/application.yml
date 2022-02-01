@@ -7,7 +7,7 @@ spring:
   application:
     name: sun-manager
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql:///sun-cloud?useSSL=false&characterEncoding=utf-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&
     username: root
     password: 1111

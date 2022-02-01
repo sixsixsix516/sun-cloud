@@ -1,0 +1,4 @@
+此包定义了全部账号体系
+如果有了新的账号（比如增加了师傅端，就需要一个师傅账号）
+1. 在此包新建一个包（例master），然后参照其他包，新建UserDetail与UserDetailService的实现类，UserDetail代表一个账号， UserDetailService定义了如何根据用户名查找到这个用户
+2. 在com.sixsixsix516.client.security.SecurityClientType里新增类型

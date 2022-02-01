@@ -15,7 +15,12 @@ services:
       - ./mysql/data:/var/lib/mysql
     command: [
                'mysqld',
-               '-innodb-buffer-poll-size=80M',
+                # innodb-buffer-poll-size： InnoDBBufferPoll是InnoDB用户缓存它的数据和索引的内存缓冲区，常见做法为这个值大于热点数据，如果不清楚环境的数据量和访问模式，建议设置为机器物理内存的70%~80%
+               '-innodb-buffer-poll-size=13G',
+               # 日志组里每个日志文件的大小。默认5MB。值越大，在缓冲池中需要检查点刷新的行为就越少，因此也越节约磁盘I/O，但更大的日志文件也意味着在崩溃时恢复的更慢，建议设置为256MB或更大
+               '-innodb_log_file_size=256MB'
+               # 默认值1，当设置2时，在每个事务提交时， 日志缓冲被写到文件中，但不对日志文件做刷新到磁盘的操作
+               '--innodb_flush_log_at_trx_commit=2',
                '--character-set-server=utf8mb4',
                '-collation-server=utf8mb4_unicode_ci',
                '--default-time-zone=+8:00',

@@ -13,7 +13,6 @@
     <name>sun-user-api</name>
     <description>用户端暴漏的接口</description>
 
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

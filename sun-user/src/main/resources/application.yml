@@ -7,7 +7,7 @@ spring:
   application:
     name: sun-user
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql:///sun-cloud?useSSL=false&characterEncoding=utf-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&
     username: root
     password: 1111
@@ -28,6 +28,7 @@ spring:
       password: sun-user
 security:
   oauth2:
+    # TODO 这个配置作用????
     client:
       client-id: ${spring.application.name}
       client-secret: ${spring.application.name}
