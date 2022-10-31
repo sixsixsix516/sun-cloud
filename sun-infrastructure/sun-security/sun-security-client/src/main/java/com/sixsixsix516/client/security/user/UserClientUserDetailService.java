@@ -1,6 +1,5 @@
 package com.sixsixsix516.client.security.user;
 
-import com.sixsixsix516.client.security.SecurityClientType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -29,7 +28,7 @@ public class UserClientUserDetailService implements UserDetailsService {
         Collection<GrantedAuthority> authorities = serviceAccount.getAuthorities();
         // 增加一个权限
         authorities.add(new SimpleGrantedAuthority("admin"));
-        serviceAccount.setUsername(String.join(":", SecurityClientType.CLIENT_USER.getClient(), username));
+        serviceAccount.setUsername(username);
         serviceAccount.setPassword(passwordEncoder.encode(username));
         return serviceAccount;
     }

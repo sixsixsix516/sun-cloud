@@ -36,8 +36,18 @@ public class Result<T> implements Serializable {
      */
     private long total;
 
+    public Result(Integer code, String msg, T data) {
+        this.code = code;
+        this.msg = msg;
+        this.data = data;
+    }
 
     public static <T> Result<T> success(T data) {
         return new Result<>(0, "请求成功", data, 0);
     }
+
+    public static <T> Result<T> failed() {
+        return new Result<>(500, "请求失败", null, 0);
+    }
+
 }

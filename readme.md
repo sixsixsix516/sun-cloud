@@ -16,11 +16,8 @@
 11. DevOps travis Docker
 12.
 
-
 链路监控的使用方式
 添加JVM参数 -javaagent:D:\app\component\apache-skywalking-apm-bin-es7\agent\skywalking-agent.jar -Dskywalking.agent.service_name=sun-gateway -Dskywalking.collector.backend_service=127.0.0.1:11800
-
-
 
 待实现
 1. 一个工具：填入包名，作者名，直接全局替换相关地方！
@@ -29,5 +26,4 @@
 1. 版本号的定义, 不可以写死
 2. 令牌：未登录，过期等的返回值需要和系统返回值全局统一
 3. 将后台管理快速开发代码挪进来
-4. 多账号下，安全服务如何设计？
-5. 
+4. 限流配置后重启会失效问题

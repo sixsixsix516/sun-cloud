@@ -28,6 +28,17 @@ public class UserController implements UserApi {
         return Result.success(null);
     }
 
+
+    /**
+     * 限流接口
+     */
+    @GetMapping("/register")
+    public Result<String> register() {
+        return Result.success("注册成功");
+    }
+
+
+
     /*    */
     /**
      * 获取正在登录的用户

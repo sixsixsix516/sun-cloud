@@ -20,7 +20,8 @@ public class AuthenticationUserDetailServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // username改为 client:username 格式
+        // username为 client:username 格式
+        // TODO 优化项: clientId可以通过属性注入进来
         String[] usernameArray = username.split(":");
 
         String clientType = usernameArray[0];
@@ -30,10 +31,12 @@ public class AuthenticationUserDetailServiceImpl implements UserDetailsService {
         for (SecurityClientType type : securityClientTypes) {
             if (type.getClient().equals(clientType)) {
                 UserDetailsService userDetailsService = SpringUtil.getBean(type.getClientClass());
-                return userDetailsService.loadUserByUsername(username);
+                // 用户名增加前缀,实现多账号体系
+                BaseUserDetails userDetails = (BaseUserDetails) userDetailsService.loadUserByUsername(username);
+                userDetails.setUsername(String.join(":", clientType, userDetails.getUsername()));
+                return userDetails;
             }
         }
         throw new UsernameNotFoundException("Cannot find username: " + username);
     }
-
 }

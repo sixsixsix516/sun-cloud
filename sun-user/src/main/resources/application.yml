@@ -18,14 +18,21 @@ spring:
       connection-timeout: 6000000
       connection-test-query: SELECT 1
       max-lifetime: 120000
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 127.0.0.1:8848
+  main:
+    allow-circular-references: true
   security:
     user:
       name: sun-user
       password: sun-user
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8090
+      eager: true
+
 security:
   oauth2:
     # TODO 这个配置作用????

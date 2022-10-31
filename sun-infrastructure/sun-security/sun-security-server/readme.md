@@ -2,7 +2,7 @@
 1. 客户端模式 ：客户端以自己的身份申请令牌
 > http://127.0.0.1:9004/security/oauth/token?grant_type=client_credentials&client_id=sun-user&client_secret=sun-user
 2. 密码模式 ：第三方应用拿到用户名密码去申请令牌
-> http://127.0.0.1:9004/security/oauth/token?grant_type=password&username=sun-web&password=sun-web&client_id=sun-web&client_secret=sun-web
+> http://127.0.0.1:9004/security/oauth/token?grant_type=password&username=CLIENT_USER:sun-web&password=sun-web&client_id=sun-web&client_secret=sun-web
 
 
 私钥公钥生成

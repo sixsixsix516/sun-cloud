@@ -4,8 +4,19 @@ server:
     context-path: /security
 spring:
   application:
-    name: sun-security
+    name: @artifactId@
+
+  profiles:
+    active: @profiles.active@
+
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
+        server-addr: ${NACOS_HOST:motionplus-register}:${NACOS_PORT:8848}
+        namespace: ${spring.profiles.active}
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        file-extension: yml
+        shared-configs:
+          - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+        namespace: ${spring.profiles.active}
